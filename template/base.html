@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title_name %}Events{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  </head>
+  <body>
+    {% block content %}
+    {% endblock %}
+    {% block customscripts %}
+    {% endblock %}
+  </body>
+</html>
