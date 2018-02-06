@@ -35,8 +35,7 @@ class NewEvent(models.Model):
 
 class Contact(models.Model):
     name = models.CharField(max_length=100)
-    phone_number = models.IntegerField(max_length=10,
-                                       blank=True,
+    phone_number = models.IntegerField(blank=True,
                                        null=True)
     email = models.ForeignKey(Emails)
 

@@ -7,6 +7,19 @@
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
   </head>
   <body>
+    <div class="navigation-container">
+      <div class="nav">
+        <ul class="nav-list">
+          {% if site_user %}
+          <li><a href="#">My Dashboard</a></li>
+          {% endif %}
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">Examples</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
     {% block content %}
     {% endblock %}
     {% block customscripts %}
