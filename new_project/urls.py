@@ -21,6 +21,9 @@ urlpatterns = [
     url(r'$',
         views.index,
         name='index'),
+    url(r'^profile/(.*)/$',
+        views.user_dashboard,
+        name='user_dashboard'),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^admin/', admin.site.urls),
 ]

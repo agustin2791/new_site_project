@@ -41,3 +41,9 @@ class Contact(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class UserProfile(models.Model):
+    user_key = models.OneToOneField(User)
+
+    def get_name(self):
+        pass
