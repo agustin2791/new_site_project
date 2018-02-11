@@ -19,3 +19,6 @@ def context_processor(request):
     }
 
     return context
+
+def user_dashboard(request, user_id):
+    pass
