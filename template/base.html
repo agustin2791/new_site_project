@@ -11,8 +11,8 @@
     <div class="navigation-container">
       <div class="nav">
         <ul class="nav-list">
-          {% if site_user %}
-          <li><a href="#">My Dashboard</a></li>
+          {% if site_user != 'AnanomousUser'%}
+          <li><a href="/profile/{{ site_user.id }}">My Dashboard</a></li>
           {% endif %}
           <li><a href="#">Shop</a></li>
           <li><a href="#">Examples</a></li>
