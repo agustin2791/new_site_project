@@ -18,9 +18,15 @@ from django.contrib import admin
 from app import views
 
 urlpatterns = [
-    url(r'$',
+    url(r'^$',
         views.index,
         name='index'),
+    url(r'^profile/(\d+)/$',
+        views.user_dashboard,
+        name='user_dashboard'),
+    url(r'^profile/new_events/(\d+)/$',
+        views.create_event,
+        name='new_event'),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^admin/', admin.site.urls),
 ]
