@@ -22,6 +22,12 @@ class Emails(models.Model):
     def __unicode__(self):
         return self.name
 
+class EventCategory(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.name
+
 class NewEvent(models.Model):
     event_name = models.CharField(max_length=150)
     date = models.DateField(auto_now=False)

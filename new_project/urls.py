@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^profile/(\d+)/$',
         views.user_dashboard,
         name='user_dashboard'),
-    url(r'^profile/my_events/(\d+)/$',
+    url(r'^profile/new_events/(\d+)/$',
         views.create_event,
         name='new_event'),
     url(r'^accounts/', include('registration.backends.default.urls')),
