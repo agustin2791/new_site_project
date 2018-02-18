@@ -28,7 +28,7 @@ class EventCategory(models.Model):
     def __unicode__(self):
         return self.name
 
-class NewEvent(models.Model):
+class Event(models.Model):
     event_name = models.CharField(max_length=150)
     date = models.DateField(auto_now=False)
     date_end = models.DateField(auto_now=False,
@@ -41,9 +41,12 @@ class NewEvent(models.Model):
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=50)
     zip_code = models.IntegerField()
-    guests = models.ManyToManyField(Emails)
+    guests = models.ManyToManyField(Emails,
+                                    blank=True)
     description = models.TextField()
-    template = models.CharField(max_length=100)
+    template = models.CharField(max_length=100,
+                                    null=True,
+                                    blank=True)
 
     def __unicode__(self):
         return self.event_name
