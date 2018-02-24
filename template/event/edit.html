@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-2">
+      <h2>{{ event.event_name }}</h2>
+      <h3>Edit</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3>General Information</h3>
+      <div class="event-gi">
+        <dl>
+          <dt>Event Date:</dt><dd>{{ event.date_end }}</dd>
+          <dt>Start Time:</dt><dd>{{ event.time_start }}</dd>
+          <dt>End Time:</dt><dd>{{ event.end_time }}</dd>
+          <dt>Host:</dt><dd>{{ event.host }}</dd>
+          <dt>Location:</dt><dd><address>{{ event.location }}<br>{{ event.address }}<br>{{ event.city }}, {{ event.state }} {{ event.zip_code }}</address></dd>
+          <dt>Description:</dt><dd>{{ event.description }}</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4><strong>Guest Count:</strong> {{ event.get_guest_count }}/{{ event.guests_limit }}</h4>
+      <div class="guest-container">
+        {% include 'event/event_guests.html' %}
+      </div>
+      <div class="guest-add">
+        <form class="guest-add-form" onsubmit="return false">
+          <div class="form-group row">
+            <label for="new_name" class="col-sm-4">Name:</label>
+            <input type="text" name="new_name" class="form-control form-control-sm col-sm-8">
+          </div>
+          <div class="form-group row">
+            <label for="new_email" class="col-sm-4">Email:</label>
+            <input type="email" name="new_email" class="form-control form-control-sm col-sm-8">
+          </div>
+          <div class="form-group row">
+            <label for="new_phone" class="col-sm-4">Phone Number:</label>
+            <input type="number" name="new_phone" class="form-control form-control-sm col-sm-8">
+          </div>
+          <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block customscripts %}
+<script type="text/javascript">
+  function add_new_guest(email, name, phone) {
+    $.ajax({
+      type: 'POST',
+      url: '/profile/{{ user_pro.username }}/event/edit/{{ event.id }}/',
+      async: true,
+      cache: false,
+      data: {
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+        'add_guest': true,
+        'guest_name': name,
+        'guest_email': email,
+        'guest_phone': phone
+      },
+      success: function(data) {
+        $('.guest-container').empty().html(data);
+        $('.guest-add-form')[0].reset();
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    })
+  }
+  $(document).on('submit', '.guest-add-form', function() {
+    let name = $('input[name="new_name"]').val(),
+        email = $('input[name="new_email"]').val(),
+        phone = $('input[name="new_phone"]').val();
+
+    add_new_guest(name, email, phone);
+    return false;
+  })
+</script>
+{% endblock %}

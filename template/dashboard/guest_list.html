@@ -1,0 +1,8 @@
+{% for g in user_pro.related_guest.all %}
+<div class="contact-container">
+  {{ g.name }} - {{ g.email }}<br><small>{{ g.phone_number }}</small>
+  <div class="contact-left">
+    <button type="button" class="btn btn-sm btn-primary" name="button">Edit</button><button type="button" class="btn btn-sm btn-danger" name="button">Delete</button>
+  </div>
+</div>
+{% endfor %}

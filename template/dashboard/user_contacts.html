@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form class="new_guest" onsubmit="return false">
+        <div class="control-group">
+          <label for="guest_name">Guest Name:</label>
+          <input type="text" class="form-control" name="guest_name" placeholder="Full Name">
+        </div>
+        <div class="control-group">
+          <label for="guest_email">Guest Email:</label>
+          <input type="email" class="form-control" name="guest_email" placeholder="Email">
+        </div>
+        <div class="control-group">
+          <label for="guest_number">Guest Phone Number:</label>
+          <input type="number" class="form-control" name="guest_number" placeholder="Phone Number">
+        </div>
+        <input type="submit" class="btn btn-primary" name="submit" value="Add Guest">
+      </form>
+    </div>
+    <div class="col-md-6 contact_list">
+      {% include 'dashboard/guest_list.html' %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block customscripts %}
+<script type="text/javascript">
+  function new_guest(email, name, phone) {
+    $.ajax({
+      type: 'POST',
+      url: '/profile/contacts/{{ user_pro.id }}/',
+      async: true,
+      cache: false,
+      data: {
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+        'new_guest': true,
+        'guest_name': name,
+        'guest_email': email,
+        'guest_phone': phone
+      },
+      success: function(data) {
+        $('.contact_list').empty().html(data)
+        $('.new_guest')[0].reset();
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    })
+  };
+  $(document).on('submit', '.new_guest', function() {
+    let name = $('input[name="guest_name"]').val(),
+        email = $('input[name="guest_email"]').val(),
+        phone = $('input[name="guest_number"]').val();
+    new_guest(email, name, phone);
+    return false;
+  })
+</script>
+{% endblock %}

@@ -7,7 +7,7 @@
     <div class="col-md-5">
       {% if events %}
       {% for e in events %}
-      <p><a href="/event/{{ e.host.username }}/{{ e.id }}">{{ e.event_name }}</p>
+      <p><a href="/event/{{ e.host.username }}/{{ e.id }}">{{ e.event_name }}</a> - <a href="/profile/event/edit/{{ e.id }}">Edit</a></p>
       {% endfor %}
       {% endif %}
     </div>

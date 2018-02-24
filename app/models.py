@@ -15,9 +15,13 @@ class UserProfile(User):
         ordering = ('first_name',)
 
 """ EVENT Website. Users can create a new event, invite people, customize page, send notification, see list of people going, view event that you have been invited on """
-class Emails(models.Model):
+class Guests(models.Model):
     email = models.CharField(max_length=150)
     name = models.CharField(max_length=100)
+    phone_number = models.IntegerField(null=True,
+                                       blank=True)
+    owner = models.ForeignKey(UserProfile,
+                              related_name='related_guest')
 
     def __unicode__(self):
         return self.name
@@ -38,15 +42,22 @@ class Event(models.Model):
     end_time = models.TimeField(auto_now=False)
     host = models.ForeignKey(UserProfile)
     location = models.CharField(max_length=150)
+    address = models.CharField(max_length=150)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=50)
     zip_code = models.IntegerField()
-    guests = models.ManyToManyField(Emails,
+    guests = models.ManyToManyField(Guests,
                                     blank=True)
+    guests_limit = models.IntegerField(blank=True,
+                                       null=True)
     description = models.TextField()
     template = models.CharField(max_length=100,
                                     null=True,
                                     blank=True)
+
+    def get_guest_count(self):
+        count = self.guests.count()
+        return count
 
     def __unicode__(self):
         return self.event_name
@@ -55,7 +66,7 @@ class Contact(models.Model):
     name = models.CharField(max_length=100)
     phone_number = models.IntegerField(blank=True,
                                        null=True)
-    email = models.ForeignKey(Emails)
+    guest = models.ForeignKey(Guests)
 
     def __unicode__(self):
         return self.name
