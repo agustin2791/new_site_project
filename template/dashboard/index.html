@@ -1,17 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="content">
-  Welcome {{ user_pro.get_name }}
-  <a href="/profile/new_event/{{ user_pro.id }}">New Event</a>
+<div class="container-fluid wrapper content-wrapper">
+  <div class="row header-profile">
+    <div class="col-md-4 user-information">
+      <!-- <img src="" class="profile-img" alt="User Profile"> -->
+      <div class="user-details">
+        <h2>{{ user_pro.get_name }}</h2>
+        <p><strong>Username</strong><br>{{ user_pro.username }}<br>
+        <strong>Email</strong><br>{{ user_pro.email }}</p>
+      </div>
+    </div>
+    <div class="col-md-8">
+
+    </div>
+  </div>
   <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-6">
+      <h3>My Events</h3>
+      <a href="/profile/new_event/{{ user_pro.id }}" class="btn btn-primary">+ Create an event</a>
       {% if events %}
-      {% for e in events %}
-      <p><a href="/event/{{ e.host.username }}/{{ e.id }}">{{ e.event_name }}</a> - <a href="/profile/event/edit/{{ e.id }}">Edit</a></p>
-      {% endfor %}
+      <div class="event-list-container">
+        {% for e in events %}
+        <div class="events">
+          <h4>{{ e.event_name }}</h4>
+          <p><i>{{ e.date_end }}</i> | {{ e.time_start }} - {{ e.end_time }} | RSVP: 0/{{ e.get_guest_count }} <a href="/profile/{{ user_pro.username }}/event/edit/{{ e.id }}" class="btn btn-primary btn-sm pull-right">Edit / View Details</a> </p>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p>No Events at this time.</p>
+      {% endif %}
+    </div>
+    <div class="col-md-6">
+      <h3>My Contact/Guest List</h3>
+      <a href="/profile/contacts/{{ user_pro.id }}" class="btn btn-primary">Edit My List</a>
+      {% if guests %}
+      <div class="guest-container">
+        <ul class="guest-list">
+        {% for g in guests %}
+          <li>{{ g.name }} | {{ g.email }}<br><small>{{ g.phone_number }}</small> </li>
+        {% endfor %}
+        </ul>
+      </div>
       {% endif %}
     </div>
   </div>
-
 </div>
 {% endblock %}

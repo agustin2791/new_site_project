@@ -27,10 +27,12 @@ def user_dashboard(request, user_id):
     user_pro = models.UserProfile.objects.get(pk=user_id)
     today = timezone.now()
     events = models.Event.objects.filter(host=user_pro, date_end__gte=today)
+    guests = models.Guests.objects.filter(owner=user_id)
 
     context = {
         'user_pro': user_pro,
         'events': events,
+        'guests': guests,
     }
 
     return render(request,

@@ -1,3 +1,40 @@
 // out: ../dist/css/main.css, compress: true
+@primary-color: #2f3542;
+@secondary-color: #a4b0be;
+@third-color: #4cd137;
+@primary-bg-color: #f5f6fa;
+@secondary-bg-color: #353b48;
+@light-color: #f1f2f6;
+
+h1, h2, h3, h4, h5, h6, b, strong {
+  color: @primary-color;
+}
+a {
+  color: @secondary-color;
+  &:hover {
+    color: darken(@secondary-color, 15%);
+  }
+}
+.btn-primary {
+  background: @primary-color;
+  border-color: darken(@primary-color, 10%);
+  &:hover {
+    background: lighten(@primary-color, 15%);
+  }
+}
+.container, .container-fluid {
+  background-color: @primary-bg-color;
+}
+.navbar {
+  height: 30px;
+  font-size: small;
+}
+.navbar-custom {
+  background: @primary-color;
+}
+body {
+  background: darken(@primary-color, 15%);
+}
 
 @import 'main/general.less';
+@import 'userdash.less';
