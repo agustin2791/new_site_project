@@ -6,34 +6,41 @@ h5,
 h6,
 b,
 strong {
-  color: #2f3542;
+  color: #3867d6;
+  font-family: 'Montserrat', sans-serif;
 }
 a {
-  color: #a4b0be;
+  color: #45aaf2;
+  transition: ease .5s;
 }
 a:hover {
-  color: #77899e;
+  color: #8dcbf7;
+  text-decoration: none;
 }
 .btn-primary {
-  background: #2f3542;
-  border-color: #1a1d24;
+  background: #3867d6;
+  border-color: #2550b6;
 }
 .btn-primary:hover {
-  background: #4f596f;
+  background: #7797e3;
+  border-color: #6287df;
 }
 .container,
 .container-fluid {
-  background-color: #f5f6fa;
+  background-color: #fff;
 }
 .navbar {
   height: 30px;
   font-size: small;
 }
 .navbar-custom {
-  background: #2f3542;
+  background: #2C3A47;
 }
 body {
-  background: #0f1115;
+  background: #fff;
+}
+.jumbotron {
+  background: #fff;
 }
 body {
   width: 100%;
@@ -51,11 +58,11 @@ body {
 .event-list-container::-webkit-scrollbar,
 .guest-container::-webkit-scrollbar {
   width: 10px;
-  background: #d1d7de;
+  background: #8dcbf7;
 }
 .event-list-container::-webkit-scrollbar-thumb,
 .guest-container::-webkit-scrollbar-thumb {
-  background: #2f3542;
+  background: #3867d6;
 }
 .event-list-container .events,
 .guest-container .events {
@@ -63,8 +70,15 @@ body {
   padding: 10px 2px;
 }
 .wrapper {
-  width: 90%;
-  padding-top: 40px;
+  width: 100%;
+  margin-top: 20px;
+  padding-top: 10px;
   margin-left: auto;
   margin-right: auto;
+}
+.side-menu {
+  background: #2C3A47;
+  height: 100vh;
+  display: block;
+  position: relative;
 }

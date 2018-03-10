@@ -1,18 +1,21 @@
 // out: ../dist/css/main.css, compress: true
-@primary-color: #2f3542;
-@secondary-color: #a4b0be;
-@third-color: #4cd137;
-@primary-bg-color: #f5f6fa;
-@secondary-bg-color: #353b48;
+@primary-color: #3867d6;
+@secondary-color: #45aaf2;
+@third-color: #4b6584;
+@primary-bg-color: #fff;
+@secondary-bg-color: #2C3A47;
 @light-color: #f1f2f6;
 
 h1, h2, h3, h4, h5, h6, b, strong {
   color: @primary-color;
+  font-family: 'Montserrat', sans-serif;
 }
 a {
   color: @secondary-color;
+  transition: ease .5s;
   &:hover {
-    color: darken(@secondary-color, 15%);
+    color: lighten(@secondary-color, 15%);
+    text-decoration: none;
   }
 }
 .btn-primary {
@@ -20,6 +23,7 @@ a {
   border-color: darken(@primary-color, 10%);
   &:hover {
     background: lighten(@primary-color, 15%);
+    border-color: lighten(@primary-color, 10%);
   }
 }
 .container, .container-fluid {
@@ -30,10 +34,13 @@ a {
   font-size: small;
 }
 .navbar-custom {
-  background: @primary-color;
+  background: @secondary-bg-color;
 }
 body {
-  background: darken(@primary-color, 15%);
+  background: @primary-bg-color;
+}
+.jumbotron {
+  background: #fff;
 }
 
 @import 'main/general.less';
